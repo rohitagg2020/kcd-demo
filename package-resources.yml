@@ -1,0 +1,52 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: kcd-demo.carvel.dev.0.0.0
+spec:
+  refName: kcd-demo.carvel.dev
+  releasedAt: null
+  template:
+    spec:
+      deploy:
+      - kapp: {}
+      fetch:
+      - git: {}
+      template:
+      - ytt:
+          paths:
+          - config
+      - kbld: {}
+  valuesSchema:
+    openAPIv3: null
+  version: 0.0.0
+
+---
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: PackageMetadata
+metadata:
+  creationTimestamp: null
+  name: kcd-demo.carvel.dev
+spec:
+  displayName: kcd-demo
+  longDescription: kcd-demo.carvel.dev
+  shortDescription: kcd-demo.carvel.dev
+
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  annotations:
+    kctrl.carvel.dev/local-fetch-0: .
+  creationTimestamp: null
+  name: kcd-demo
+spec:
+  packageRef:
+    refName: kcd-demo.carvel.dev
+    versionSelection:
+      constraints: 0.0.0
+  serviceAccountName: kcd-demo-sa
+status:
+  conditions: null
+  friendlyDescription: ""
+  observedGeneration: 0
